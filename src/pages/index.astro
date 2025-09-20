@@ -1,79 +1,104 @@
----
----
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="viewport" content="width=device-width" />
-<meta name="generator" content={Astro.generator} />
-<title>Howdy English - Coming Soon</title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Howdy English - Coming Soon</title>
+    <meta name="description" content="Learn English through podcasts. Coming soon.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<nav>
-<a href="/">Home</a>
-<a href="/terms">Terms</a>
-<a href="/privacy">Privacy</a>
-<a href="/disclaimer">Disclaimer</a>
-</nav>
+    <main class="main">
+        <div class="container">
+            <h1>Coming Soon</h1>
+        </div>
+    </main>
 
-<main>
-<h1>Howdy English</h1>
-<h2>Coming Soon - October 2025</h2>
-<p>Learn English through podcasts with interactive features and personalized learning.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
 
-<section>
-<h3>About</h3>
-<p>Howdy English transforms podcast listening into an engaging English learning experience. Coming October 2025.</p>
-</section>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<section>
-<h3>Founder</h3>
-<p><strong>Jeff Copeland</strong> - Founder & Developer</p>
-<p>Building the future of English learning through podcasts.</p>
-</section>
+        body {
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #FDFCFE;
+            color: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-<style>
-body {
-  font-family: 'Noto Sans', sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  line-height: 1.6;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-nav {
-  margin-bottom: 40px;
-}
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-nav a {
-  margin-right: 20px;
-  text-decoration: none;
-  color: #0066cc;
-}
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #0075F2;
+            text-align: center;
+        }
 
-nav a:hover {
-  text-decoration: underline;
-}
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid #EFEFEF;
+        }
 
-section {
-  margin-bottom: 30px;
-}
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
 
-h1 {
-  color: #333;
-  font-size: 2.5em;
-}
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
 
-h2 {
-  color: #666;
-  font-size: 1.5em;
-}
+        .footer-links a:hover {
+            color: #0075F2;
+        }
 
-h3 {
-  color: #333;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
-}
-</style>
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
 </body>
 </html>
