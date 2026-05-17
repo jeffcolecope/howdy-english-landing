@@ -1,0 +1,413 @@
+---
+// src/components/Nav.astro
+
+export interface Props {
+  currentLang?: string;
+}
+
+const { currentLang = 'en' } = Astro.props;
+
+const languages = [
+  { code: 'en',    label: 'English',                    flag: '🇺🇸', native: 'English' },
+  { code: 'vi',    label: 'Vietnamese',                 flag: '🇻🇳', native: 'Tiếng Việt' },
+  { code: 'es',    label: 'Spanish',                    flag: '🇪🇸', native: 'Español' },
+  { code: 'pt-BR', label: 'Brazilian Portuguese',       flag: '🇧🇷', native: 'Português (BR)' },
+  { code: 'th',    label: 'Thai',                       flag: '🇹🇭', native: 'ภาษาไทย' },
+  { code: 'id',    label: 'Indonesian',                 flag: '🇮🇩', native: 'Bahasa Indonesia' },
+  { code: 'ko',    label: 'Korean',                     flag: '🇰🇷', native: '한국어' },
+  { code: 'ja',    label: 'Japanese',                   flag: '🇯🇵', native: '日本語' },
+  { code: 'ar',    label: 'Standard Arabic',            flag: '🇸🇦', native: 'العربية' },
+  { code: 'tr',    label: 'Turkish',                    flag: '🇹🇷', native: 'Türkçe' },
+  { code: 'zh-TW', label: 'Traditional Chinese',        flag: '🇹🇼', native: '繁體中文' },
+];
+
+const current = languages.find(l => l.code === currentLang) ?? languages[0];
+
+function langUrl(code: string) {
+  if (code === 'en') return '/';
+  return `/${code}/`;
+}
+---
+
+<nav id="main-nav">
+  <a href={langUrl(currentLang)} class="nav-logo">
+    Howdy <span>English</span>
+  </a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#about">About</a></li>
+
+    <li class="lang-switcher" id="lang-switcher">
+      <button
+        class="lang-btn"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+        id="lang-btn"
+        aria-label="Switch language"
+        type="button"
+      >
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span class="lang-current-flag">{current.flag}</span>
+        <span class="lang-current-label">{current.native}</span>
+        <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </button>
+
+      <ul class="lang-dropdown" role="listbox" aria-label="Select language" id="lang-dropdown">
+        {languages.map(lang => (
+          <li role="option" aria-selected={lang.code === currentLang}>
+            <a
+              href={langUrl(lang.code)}
+              class:list={['lang-option', { active: lang.code === currentLang }]}
+              hreflang={lang.code}
+            >
+              <span class="lang-flag">{lang.flag}</span>
+              <span class="lang-native">{lang.native}</span>
+              {lang.code === currentLang && (
+                <svg class="check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </li>
+
+    <li>
+      <a href="https://apps.apple.com" class="nav-cta" target="_blank" rel="noopener noreferrer">
+        Download Free
+      </a>
+    </li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" type="button">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a href="#features">Features</a>
+  <a href="#how-it-works">How It Works</a>
+  <a href="#about">About</a>
+  <hr class="mobile-divider" />
+  <p class="mobile-lang-label">Language</p>
+  <div class="mobile-lang-grid">
+    {languages.map(lang => (
+      <a
+        href={langUrl(lang.code)}
+        class:list={['mobile-lang-item', { active: lang.code === currentLang }]}
+        hreflang={lang.code}
+      >
+        <span>{lang.flag}</span>
+        <span>{lang.native}</span>
+      </a>
+    ))}
+  </div>
+  <a href="https://apps.apple.com" class="mobile-cta-btn" target="_blank" rel="noopener noreferrer">
+    Download Free
+  </a>
+</div>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .nav-logo {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #111;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .nav-logo span { color: #2563EB; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  .nav-links > li > a:not(.nav-cta) {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links > li > a:not(.nav-cta):hover {
+    color: #111;
+    background: #f4f4f4;
+  }
+
+  .lang-switcher {
+    position: relative;
+  }
+
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 100px;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #333;
+    transition: border-color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .lang-btn:hover {
+    border-color: #aaa;
+    background: #f9f9f9;
+  }
+  .lang-btn[aria-expanded="true"] {
+    border-color: #2563EB;
+    background: #EEF3FF;
+    color: #2563EB;
+  }
+  .lang-btn[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+  .lang-current-flag { font-size: 1rem; line-height: 1; }
+  .lang-current-label { max-width: 100px; overflow: hidden; text-overflow: ellipsis; }
+  .chevron { transition: transform 0.2s; flex-shrink: 0; }
+
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+    z-index: 200;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+  .lang-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 9px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .lang-option:hover { background: #f4f4f4; }
+  .lang-option.active {
+    background: #EEF3FF;
+    color: #2563EB;
+    font-weight: 600;
+  }
+  .lang-flag { font-size: 1.1rem; flex-shrink: 0; }
+  .lang-native { flex: 1; }
+  .check { margin-left: auto; color: #2563EB; flex-shrink: 0; }
+
+  .nav-cta {
+    display: inline-block;
+    background: #111;
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+    margin-left: 4px;
+  }
+  .nav-cta:hover { background: #2563EB; transform: translateY(-1px); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 6px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: #111;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: #fff;
+    padding: 24px 5% 36px;
+    z-index: 99;
+    border-bottom: 1px solid #e5e5e5;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    max-height: calc(100vh - 68px);
+    overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu > a {
+    text-decoration: none;
+    color: #111;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 4px;
+    border-radius: 8px;
+    transition: color 0.2s;
+  }
+  .mobile-menu > a:hover { color: #2563EB; }
+  .mobile-divider {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 8px 0;
+  }
+  .mobile-lang-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    padding: 4px 4px 8px;
+  }
+  .mobile-lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  .mobile-lang-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.15s;
+    border: 1px solid transparent;
+  }
+  .mobile-lang-item:hover { background: #f4f4f4; }
+  .mobile-lang-item.active {
+    background: #EEF3FF;
+    color: #2563EB;
+    border-color: #c7d9fb;
+    font-weight: 600;
+  }
+  .mobile-cta-btn {
+    display: block;
+    margin-top: 12px;
+    background: #111;
+    color: #fff;
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .mobile-cta-btn:hover { background: #2563EB; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  :global([dir="rtl"]) .lang-dropdown {
+    right: auto;
+    left: 0;
+  }
+</style>
+
+<script>
+  const langBtn = document.getElementById('lang-btn');
+  const langDropdown = document.getElementById('lang-dropdown');
+
+  langBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = langDropdown?.classList.contains('open');
+    langDropdown?.classList.toggle('open', !isOpen);
+    langBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  document.addEventListener('click', () => {
+    langDropdown?.classList.remove('open');
+    langBtn?.setAttribute('aria-expanded', 'false');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      langDropdown?.classList.remove('open');
+      langBtn?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('open');
+    mobileMenu?.classList.toggle('open', !isOpen);
+    mobileMenu?.setAttribute('aria-hidden', String(isOpen));
+    hamburger.setAttribute('aria-expanded', String(!isOpen));
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+  });
+</script>

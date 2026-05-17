@@ -1,0 +1,187 @@
+---
+// src/components/WhyIBuiltThis.astro
+---
+
+<section class="why" id="about">
+  <div class="why-inner">
+
+    <div class="why-copy">
+      <p class="section-tag">Why I built this</p>
+      <h2>There was no app<br />built for <em>them</em></h2>
+
+      <div class="why-body">
+        <p>
+          I've spent years teaching English to adult learners. People with
+          jobs, families, and real lives who already speak some English but
+          can't seem to break through to the next level.
+        </p>
+        <p>
+          They weren't beginners. They didn't need to learn the alphabet or
+          count to ten. What they needed was exposure to real English -- the
+          kind spoken in podcasts, at work, and between friends -- and a way
+          to practice speaking it without feeling embarrassed.
+        </p>
+        <p>
+          Every app I found was built for beginners. Gamified lessons, cartoon
+          characters, basic vocabulary. Nothing designed for someone who already
+          knows English but just can't get past that wall.
+        </p>
+        <p class="why-closer">
+          So I built Howdy English. For the learner who's stuck in the middle
+          and ready to break through.
+        </p>
+      </div>
+    </div>
+
+    <div class="why-founder">
+      <div class="why-photo-wrap">
+        <img
+          src="/screenshots/jeff.jpg"
+          alt="Jeff, founder of Howdy English"
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+          class="why-photo"
+        />
+      </div>
+      <p class="why-name">Jeff</p>
+      <p class="why-title">Founder & English Teacher</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .why {
+    padding: 100px 5%;
+    background: #fff;
+  }
+  .why-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 14px;
+  }
+  .why-copy h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #111;
+    margin-bottom: 36px;
+  }
+  .why-copy h2 em {
+    font-style: italic;
+    color: #2563EB;
+  }
+
+  .why-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 580px;
+  }
+  .why-body p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+  }
+  .why-closer {
+    font-size: 1.05rem !important;
+    font-weight: 600;
+    color: #111 !important;
+    border-left: 3px solid #2563EB;
+    padding-left: 16px;
+    margin-top: 8px !important;
+  }
+
+  .why-founder {
+    position: sticky;
+    top: calc(68px + 48px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding-top: 80px;
+  }
+  .why-photo-wrap {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #EEF3FF;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
+    background: #f0f4ff;
+    flex-shrink: 0;
+  }
+  .why-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .why-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+  }
+  .why-title {
+    font-size: 0.8rem;
+    color: #999;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 860px) {
+    .why-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .why-founder {
+      position: relative;
+      top: auto;
+      flex-direction: row;
+      text-align: left;
+      padding-top: 8px;
+      border-top: 1px solid #e5e5e5;
+      gap: 16px;
+    }
+    .why-photo-wrap {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+    }
+    .why-body { max-width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    .why { padding: 70px 5%; }
+    .why-closer { font-size: 1rem !important; }
+  }
+
+  :global([dir="rtl"]) .why-inner {
+    direction: rtl;
+  }
+  :global([dir="rtl"]) .why-closer {
+    border-left: none;
+    border-right: 3px solid #2563EB;
+    padding-left: 0;
+    padding-right: 16px;
+  }
+</style>

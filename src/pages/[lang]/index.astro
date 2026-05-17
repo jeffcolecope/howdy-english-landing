@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Landing from '../../components/Landing.astro';
+
+export function getStaticPaths() {
+  const locales = ['vi', 'es', 'pt-BR', 'th', 'id', 'ko', 'ja', 'ar', 'tr', 'zh-TW'];
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const currentLang = lang!;
+---
+
+<BaseLayout currentLang={currentLang}>
+    <Landing />
+</BaseLayout>

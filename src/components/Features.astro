@@ -1,0 +1,376 @@
+---
+const features = [
+  {
+    icon: '🎙️',
+    title: 'Real podcast conversations',
+    description:
+      'Listen to authentic English conversations and follow along word by word, at your own pace. No scripted phrases, no textbook English.',
+    screen: '/screenshots/feature-conversation.png',
+  },
+  {
+    icon: '📖',
+    title: 'Vocabulary in context',
+    description:
+      'Tap any word to see its meaning in your language, how to pronounce it, and hear it out loud. Build vocabulary from sentences you actually understand.',
+    screen: '/screenshots/feature-word.png',
+  },
+  {
+    icon: '✏️',
+    title: 'Fill-in-the-blank quizzes',
+    description:
+      'Reinforce what you just heard with quizzes built from the real sentences you practiced. Only vocab from your actual lessons -- no random word lists.',
+    screen: '/screenshots/feature-quiz.png',
+  },
+  {
+    icon: '🗣️',
+    title: 'Speaking practice with feedback',
+    description:
+      'Record yourself, get instant feedback on pronunciation and fluency, and improve with every attempt. Real practice, not just passive listening.',
+    screen: '/screenshots/feature-speaking.png',
+  },
+  {
+    icon: '🌏',
+    title: 'Your language, your way',
+    description:
+      'Translations and explanations in your native language -- Vietnamese, Spanish, Korean, Arabic, and 7 more. No confusion, just clarity.',
+    screen: '/screenshots/feature-conversation.png',
+  },
+];
+---
+
+<section class="features" id="features">
+  <div class="features-header">
+    <p class="section-tag">What you get</p>
+    <h2>Smarter learning that leads to <em>real</em> progress</h2>
+    <p class="section-sub">
+      Every feature is built around one goal: helping you speak
+      English with confidence in real situations.
+    </p>
+  </div>
+
+  <!-- Desktop: phones scroll left, sticky copy right -->
+  <div class="features-inner features-inner--desktop">
+    <div class="features-phones" aria-hidden="false">
+      {features.map((feature, index) => (
+        <div
+          class:list={['feat-phone', { active: index === 0 }]}
+          data-index={index}
+        >
+          <img
+            src={feature.screen}
+            alt=""
+            width="260"
+            height="530"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
+
+    <div class="features-sticky">
+      <div
+        class="feat-text-block"
+        id="feat-text-block"
+      >
+        <div class="feat-icon" id="feat-text-icon">{features[0].icon}</div>
+        <h3 id="feat-text-title">{features[0].title}</h3>
+        <p id="feat-text-desc">{features[0].description}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile: phone + copy pairs, no JS -->
+  <div class="features-mobile">
+    {features.map((feature) => (
+      <article class="features-mobile-item">
+        <div class="feat-phone feat-phone--mobile">
+          <img
+            src={feature.screen}
+            alt=""
+            width="260"
+            height="530"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="feat-text-block feat-text-block--mobile">
+          <div class="feat-icon">{feature.icon}</div>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: 100px 5%;
+    background: #fff;
+  }
+
+  .features-header {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+  }
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 14px;
+  }
+  .features-header h2 {
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #111;
+    margin-bottom: 16px;
+  }
+  .features-header h2 em {
+    font-style: italic;
+    color: #2563EB;
+  }
+  .section-sub {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0;
+  }
+
+  /* ── Desktop layout ── */
+  .features-inner--desktop {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .features-phones {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    padding-bottom: 120px;
+  }
+
+  .feat-phone {
+    width: 260px;
+    margin: 0 auto;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 10px #111,
+      0 0 0 11px #333,
+      0 32px 64px rgba(0, 0, 0, 0.18);
+    background: linear-gradient(160deg, #1a1a1a 0%, #2d2d2d 100%);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .feat-phone img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 260 / 530;
+    object-fit: cover;
+  }
+  .feat-phone.active {
+    transform: scale(1.02);
+    box-shadow:
+      0 0 0 10px #111,
+      0 0 0 11px #333,
+      0 40px 80px rgba(37, 99, 235, 0.22);
+  }
+
+  .features-sticky {
+    position: sticky;
+    top: calc(68px + 80px);
+    align-self: start;
+  }
+
+  .feat-text-block {
+    max-width: 420px;
+    transition: opacity 0.25s ease;
+  }
+  .feat-text-block.is-fading {
+    opacity: 0;
+  }
+
+  .feat-icon {
+    width: 48px;
+    height: 48px;
+    background: #EEF3FF;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+
+  .feat-text-block h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.3;
+    margin: 0 0 16px;
+  }
+
+  .feat-text-block p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #555;
+    margin: 0;
+  }
+
+  /* ── Mobile layout ── */
+  .features-mobile {
+    display: none;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .features-mobile-item {
+    padding: 40px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .features-mobile-item:last-child {
+    border-bottom: none;
+  }
+
+  .feat-phone--mobile {
+    margin-bottom: 28px;
+  }
+
+  .feat-text-block--mobile .feat-icon {
+    margin-bottom: 16px;
+  }
+  .feat-text-block--mobile h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+  }
+  .feat-text-block--mobile p {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 960px) {
+    .features-inner--desktop {
+      display: none;
+    }
+    .features-mobile {
+      display: block;
+    }
+    .features-header {
+      margin-bottom: 40px;
+    }
+    .section-sub {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .features {
+      padding: 70px 5%;
+    }
+    .feat-phone {
+      width: 220px;
+    }
+  }
+
+  :global([dir="rtl"]) .features-inner--desktop {
+    direction: rtl;
+  }
+</style>
+
+<script define:vars={{ features }}>
+  const MOBILE_MQ = '(max-width: 960px)';
+
+  function isMobile() {
+    return window.matchMedia(MOBILE_MQ).matches;
+  }
+
+  function initFeaturesScroll() {
+    if (isMobile()) return;
+
+    const phones = Array.from(document.querySelectorAll('.features-inner--desktop .feat-phone'));
+    const textBlock = document.getElementById('feat-text-block');
+    const iconEl = document.getElementById('feat-text-icon');
+    const titleEl = document.getElementById('feat-text-title');
+    const descEl = document.getElementById('feat-text-desc');
+
+    if (!phones.length || !textBlock || !iconEl || !titleEl || !descEl) return;
+
+    const ratios = new Map();
+    let activeIndex = 0;
+    let fadeTimer = null;
+
+    function setActivePhone(index) {
+      phones.forEach((phone, i) => {
+        phone.classList.toggle('active', i === index);
+      });
+    }
+
+    function updateText(index) {
+      const feature = features[index];
+      if (!feature || index === activeIndex) return;
+
+      activeIndex = index;
+      setActivePhone(index);
+
+      textBlock.classList.add('is-fading');
+
+      if (fadeTimer) window.clearTimeout(fadeTimer);
+      fadeTimer = window.setTimeout(() => {
+        iconEl.textContent = feature.icon;
+        titleEl.textContent = feature.title;
+        descEl.textContent = feature.description;
+        textBlock.classList.remove('is-fading');
+      }, 250);
+    }
+
+    setActivePhone(0);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const idx = Number((entry.target).dataset.index);
+          ratios.set(idx, entry.isIntersecting ? entry.intersectionRatio : 0);
+        });
+
+        let bestIndex = activeIndex;
+        let bestRatio = 0;
+        phones.forEach((phone) => {
+          const idx = Number(phone.dataset.index);
+          const r = ratios.get(idx) ?? 0;
+          if (r > bestRatio) {
+            bestRatio = r;
+            bestIndex = idx;
+          }
+        });
+
+        if (bestRatio > 0) {
+          updateText(bestIndex);
+        }
+      },
+      {
+        rootMargin: '-40% 0px -40% 0px',
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      }
+    );
+
+    phones.forEach((phone) => observer.observe(phone));
+
+    window.matchMedia(MOBILE_MQ).addEventListener('change', (e) => {
+      if (e.matches) {
+        observer.disconnect();
+        if (fadeTimer) window.clearTimeout(fadeTimer);
+      }
+    });
+  }
+
+  initFeaturesScroll();
+  document.addEventListener('astro:page-load', initFeaturesScroll);
+</script>

@@ -1,0 +1,221 @@
+---
+// src/components/HowItWorks.astro
+---
+
+<section class="hiw" id="how-it-works">
+  <div class="hiw-inner">
+
+    <div class="hiw-header">
+      <p class="section-tag">How it works</p>
+      <h2>Start speaking English<br />in three simple steps</h2>
+    </div>
+
+    <div class="hiw-steps">
+
+      <div class="hiw-card">
+        <div class="hiw-card-top">
+          <span class="hiw-num">01</span>
+          <span class="hiw-icon">🎙️</span>
+        </div>
+        <h3>Listen to real conversations</h3>
+        <p>
+          Pick a podcast episode made for English learners. Follow along
+          word by word, at your own pace — no scripted phrases, no
+          textbook English.
+        </p>
+      </div>
+
+      <div class="hiw-connector" aria-hidden="true">
+        <svg width="40" height="12" viewBox="0 0 40 12" fill="none">
+          <path d="M0 6h36M30 1l6 5-6 5" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="hiw-card">
+        <div class="hiw-card-top">
+          <span class="hiw-num">02</span>
+          <span class="hiw-icon">📖</span>
+        </div>
+        <h3>Learn the words that matter</h3>
+        <p>
+          Tap any word to see its meaning in your language, how to
+          pronounce it, and hear it out loud. Build vocabulary from
+          sentences you actually understand.
+        </p>
+      </div>
+
+      <div class="hiw-connector" aria-hidden="true">
+        <svg width="40" height="12" viewBox="0 0 40 12" fill="none">
+          <path d="M0 6h36M30 1l6 5-6 5" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="hiw-card hiw-card--accent">
+        <div class="hiw-card-top">
+          <span class="hiw-num">03</span>
+          <span class="hiw-icon">🗣️</span>
+        </div>
+        <h3>Practice until it sticks</h3>
+        <p>
+          Quiz yourself on what you just heard, then say it out loud.
+          Get feedback on your pronunciation and track your progress
+          over time.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hiw {
+    padding: 100px 5%;
+    background: #f9f9f9;
+  }
+  .hiw-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hiw-header {
+    margin-bottom: 56px;
+  }
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 14px;
+  }
+  .hiw-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #111;
+  }
+  .hiw-header h2 em {
+    font-style: italic;
+    color: #2563EB;
+  }
+
+  .hiw-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .hiw-connector {
+    flex-shrink: 0;
+    padding: 0 8px;
+    margin-top: -40px;
+  }
+
+  .hiw-card {
+    flex: 1;
+    background: #fff;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .hiw-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+  }
+
+  .hiw-card--accent {
+    background: #111;
+    border-color: #111;
+  }
+  .hiw-card--accent h3 { color: #fff; }
+  .hiw-card--accent p  { color: rgba(255, 255, 255, 0.6); }
+  .hiw-card--accent .hiw-num { color: rgba(255, 255, 255, 0.2); }
+  .hiw-card--accent .hiw-icon {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .hiw-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .hiw-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #e5e5e5;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .hiw-icon {
+    width: 48px;
+    height: 48px;
+    background: #EEF3FF;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .hiw-card h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .hiw-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .hiw-steps {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .hiw-connector {
+      margin: 0 auto;
+      padding: 4px 0;
+      transform: rotate(90deg);
+    }
+    .hiw-card {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hiw { padding: 70px 5%; }
+    .hiw-card { padding: 24px 20px; }
+    .hiw-num { font-size: 2.4rem; }
+  }
+
+  :global([dir="rtl"]) .hiw-header {
+    direction: rtl;
+  }
+  :global([dir="rtl"]) .hiw-steps {
+    flex-direction: row-reverse;
+  }
+  :global([dir="rtl"]) .hiw-connector {
+    transform: scaleX(-1);
+  }
+
+  @media (max-width: 900px) {
+    :global([dir="rtl"]) .hiw-steps {
+      flex-direction: column;
+    }
+    :global([dir="rtl"]) .hiw-connector {
+      transform: rotate(90deg) scaleX(-1);
+    }
+  }
+</style>
